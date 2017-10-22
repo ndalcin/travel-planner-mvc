@@ -3,6 +3,7 @@ class CreateFlights < ActiveRecord::Migration[5.1]
     create_table :flights do |t|
       t.string :departure
       t.string :arrival
+      t.date :date
       t.integer :trip_id
     end
   end

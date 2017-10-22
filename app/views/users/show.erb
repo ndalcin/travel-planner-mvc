@@ -1,0 +1,17 @@
+<h1>Welcome, <%=@user.username%></h1>
+<br></br>
+<h2>What would you like to do?</h2>
+<br></br>
+<a href="/trips">View Your Trips</a>
+<br></br>
+<a href="/trips/new">Add A New Trip</a>
+<br></br>
+<a href="/logout">Logout</a>
+<br></br>
+<br></br>
+<br></br>
+Here are some trips that other users have planned:
+
+<%Trip.all.each do |trip|%>
+<h3><li><a href="/trips/<%=trip.id%>"><%=trip.name%></a></li></h3>
+<%end%>

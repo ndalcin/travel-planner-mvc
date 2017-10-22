@@ -15,16 +15,19 @@ ActiveRecord::Schema.define(version: 20171022013155) do
   create_table "flights", force: :cascade do |t|
     t.string "departure"
     t.string "arrival"
+    t.date "date"
     t.integer "trip_id"
   end
 
   create_table "trips", force: :cascade do |t|
+    t.string "name"
     t.string "budget"
-    t.string "length"
+    t.integer "travelers"
     t.integer "user_id"
   end
 
   create_table "users", force: :cascade do |t|
+    t.string "email"
     t.string "username"
     t.string "password_digest"
   end

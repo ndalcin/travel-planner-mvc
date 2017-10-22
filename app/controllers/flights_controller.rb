@@ -1,4 +1,4 @@
-class FlightsController < Sinatra::Base
+class FlightsController < ApplicationController
 
 
 

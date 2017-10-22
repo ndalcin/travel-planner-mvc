@@ -1,0 +1,12 @@
+<h1><%=@trip.name%></h1>
+<h2>Budget: $<%=@trip.budget%> Total</h2>
+<h2>Number of Travelers: <%=@trip.travelers%></h2>
+<h2>
+
+<a href="/trips/<%=@trip.id%>/edit">Edit Trip</a>
+<br></br>
+<br></br>
+<form action="/trips/<%=@trip.id%>/delete" method="post">
+  <input id="hidden" type="hidden" name="_method" value="delete">
+  <input type="submit" value="Delete Trip">
+</form>
