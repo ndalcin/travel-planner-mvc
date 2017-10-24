@@ -1,6 +1,4 @@
 class FlightsController < ApplicationController
 
 
-
-
 end

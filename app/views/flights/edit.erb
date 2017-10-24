@@ -1,0 +1,11 @@
+<h1>Edit your Flight Information</h1>
+
+<form action="/trips" method="POST">
+  Departure City: <input type="text" name="departure" id="dep" value="<%=@flight.departure%>"></input>
+  <br></br>
+  Arrival City: <input type="text" name="arrival" id="arr" value="<%=@flight.arrival%>"></input>
+  <br></br>
+  Date: <input type="text" name="date" id="date" value="<%=@flight.date%>"></input>
+  <br></br>
+  <input type="submit" value="Update Flight Information">
+</form>

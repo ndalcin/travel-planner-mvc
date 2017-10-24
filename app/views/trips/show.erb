@@ -1,12 +1,19 @@
 <h1><%=@trip.name%></h1>
 <h2>Budget: $<%=@trip.budget%> Total</h2>
 <h2>Number of Travelers: <%=@trip.travelers%></h2>
-<h2>
+<h2>Departure City: <%=@trip.flight.departure_city%></h2>
+
+<%if @trip.user_id == current_user.id%>
+<a href="/flights/<%@trip.flight.id%>">Add Additional Flight Preferences</a>
+<br></br>
+<br></br>
 
 <a href="/trips/<%=@trip.id%>/edit">Edit Trip</a>
-<br></br>
+
 <br></br>
 <form action="/trips/<%=@trip.id%>/delete" method="post">
   <input id="hidden" type="hidden" name="_method" value="delete">
   <input type="submit" value="Delete Trip">
 </form>
+
+<%end%>

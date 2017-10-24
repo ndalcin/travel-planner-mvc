@@ -13,10 +13,7 @@
 ActiveRecord::Schema.define(version: 20171022013155) do
 
   create_table "flights", force: :cascade do |t|
-    t.string "departure"
-    t.string "arrival"
-    t.date "date"
-    t.integer "trip_id"
+    t.string "departure_city"
   end
 
   create_table "trips", force: :cascade do |t|
@@ -24,6 +21,7 @@ ActiveRecord::Schema.define(version: 20171022013155) do
     t.string "budget"
     t.integer "travelers"
     t.integer "user_id"
+    t.integer "flight_id"
   end
 
   create_table "users", force: :cascade do |t|

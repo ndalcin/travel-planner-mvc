@@ -18,13 +18,14 @@ class TripsController < ApplicationController
     end
 
     post '/trips' do
-      if params.has_value?("")
-        redirect '/trips/new'
-      else
-        @trip = Trip.create(name: params[:name], budget: params[:budget], travelers: params[:travelers], user_id: current_user.id)
+      @trip = Trip.create(params[:trip])
+      @trip.user_id = current_user.id
+      binding.pry
+      if !params[:departure_city].empty?
+        @trip.flight = Flight.create(departure_city: params[:departure_city])
+      end
         @trip.save
         redirect "/trips/#{@trip.id}"
-      end
     end
 
     get "/trips/:id/edit" do
@@ -46,16 +47,6 @@ class TripsController < ApplicationController
         erb :"/trips/show"
       else
         redirect '/login'
-      end
-    end
-
-    patch "/trips/:id" do
-      @trip = Trip.find_by_id(params[:id])
-      if params.has_value?("")
-        redirect "/trips/#{@trip.id}/edit"
-      else
-        @tweet.update(name: params[:name], budget: params[:budget], travelers: params[:travelers])
-        redirect "/trips/#{@trip.id}"
       end
     end
 

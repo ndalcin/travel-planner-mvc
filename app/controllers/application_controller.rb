@@ -1,4 +1,6 @@
 require './config/environment'
+require 'pry'
+
 
 class ApplicationController < Sinatra::Base
 
@@ -13,10 +15,10 @@ class ApplicationController < Sinatra::Base
     erb :"index"
   end
 
-
   get '/failure' do
     erb :"failure"
   end
+
 
 
   helpers do
@@ -30,5 +32,5 @@ class ApplicationController < Sinatra::Base
     end
 
   end
-  
+
 end

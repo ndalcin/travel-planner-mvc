@@ -5,6 +5,7 @@ class CreateTrips < ActiveRecord::Migration[5.1]
       t.string :budget
       t.integer :travelers
       t.integer :user_id
+      t.integer :flight_id
     end
   end
 end
