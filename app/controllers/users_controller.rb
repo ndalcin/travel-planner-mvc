@@ -29,7 +29,8 @@ class UsersController < ApplicationController
       session[:user_id] = @user.id
       redirect "/home"
     else
-      redirect "/failure"
+      flash[:notice] = 'You must be logged in to do this'
+      redirect "/login"
     end
   end
 
@@ -38,6 +39,7 @@ class UsersController < ApplicationController
       @user = User.find(session[:user_id])
       erb :"/users/show"
     else
+      flash[:notice] = 'You must be logged in to do this'
       redirect "/login"
     end
   end
@@ -47,7 +49,8 @@ class UsersController < ApplicationController
   		session.clear
   		redirect "/"
     else
-      redirect "/"
+      flash[:notice] = 'You must be logged in to do this'
+      redirect "/login"
     end
 	end
 

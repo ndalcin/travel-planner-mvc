@@ -4,7 +4,11 @@
     <title>Nicole's Trip Planner Application</title>
   </head>
   <body>
-    
+
+      <% if flash[:notice] %>
+        <p class="flash"><%= flash[:notice] %></p>
+      <% end %>
+      
     <%= yield %>
   </body>
 </html>

@@ -20,8 +20,16 @@ class TripsController < ApplicationController
     post '/trips' do
       @trip = Trip.create(params[:trip])
       @trip.user_id = current_user.id
+      if params[:flight][:departure]
+        @trip.flight_id = params[:flight][:departure]
+      end
       if !params[:departure_city].empty?
-        @trip.flight = Flight.create(departure_city: params[:departure_city])
+        flight = Flight.find_by(departure_city: params[:departure_city])
+        if flight
+          @trip.flight = flight
+        else
+          @trip.flight = Flight.create(departure_city: params[:departure_city])
+        end
       end
         @trip.save
         redirect "/trips/#{@trip.id}"
