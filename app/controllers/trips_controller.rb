@@ -20,7 +20,6 @@ class TripsController < ApplicationController
     post '/trips' do
       @trip = Trip.create(params[:trip])
       @trip.user_id = current_user.id
-      binding.pry
       if !params[:departure_city].empty?
         @trip.flight = Flight.create(departure_city: params[:departure_city])
       end

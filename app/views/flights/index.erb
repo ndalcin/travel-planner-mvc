@@ -1,1 +1,7 @@
-<h1>Flights Page</h1>
+<h1>Popular Departure Cities</h1>
+<ul>
+<% Flight.all.each do |flight| %>
+
+<li><%=flight.departure_city%></li>
+<%end%>
+</ul>
