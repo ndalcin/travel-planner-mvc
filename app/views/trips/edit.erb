@@ -1,7 +1,7 @@
 <a href="/home">Home</a>
 <h1>Make Changes to Your Trip!</h1>
 
-<form action="/trips" method="POST">
+<form action="/trips/<%=@trip.id%>" method="POST">
   Trip Name: <input type="text" name="trip[name]" id="trip_name" value="<%=@trip.name%>"></input>
   <br></br>
   Budget: <input type="text" name="trip[budget]" id="trip_budget" value="<%=@trip.budget%>"></input>
