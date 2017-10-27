@@ -5,6 +5,7 @@ class TripsController < ApplicationController
         @user = User.find(session[:user_id])
         erb :"/trips/index"
       else
+        flash[:notice] = "Please login to see this page"
         redirect "/login"
       end
     end
@@ -13,6 +14,7 @@ class TripsController < ApplicationController
       if logged_in?
         erb :"/trips/new"
       else
+        flash[:notice] = "Please login to see this page"
         redirect "/login"
       end
     end
@@ -20,9 +22,6 @@ class TripsController < ApplicationController
     post '/trips' do
       @trip = Trip.create(params[:trip])
       @trip.user_id = current_user.id
-      if params[:flight][:departure]
-        @trip.flight_id = params[:flight][:departure]
-      end
       if !params[:departure_city].empty?
         flight = Flight.find_by(departure_city: params[:departure_city])
         if flight
@@ -30,8 +29,11 @@ class TripsController < ApplicationController
         else
           @trip.flight = Flight.create(departure_city: params[:departure_city])
         end
+      elsif params[:flight][:departure]
+        @trip.flight_id = params[:flight][:departure]
       end
         @trip.save
+        flash[:notice] = "Your trip was added successfully!"
         redirect "/trips/#{@trip.id}"
     end
 
@@ -45,6 +47,7 @@ class TripsController < ApplicationController
           redirect '/trips'
         end
       else
+        flash[:notice] = "Please login to see this page"
         redirect "/login"
       end
     end
@@ -58,7 +61,7 @@ class TripsController < ApplicationController
         end
         erb :"/trips/show"
       else
-        flash[:notice] = "Please login to view trips"
+        flash[:notice] = "Please login to see this page"
         redirect '/login'
       end
     end
@@ -66,9 +69,6 @@ class TripsController < ApplicationController
     post "/trips/:id" do
       @trip = Trip.find_by_id(params[:id])
       @trip.update(params[:trip])
-      if params[:flight][:departure]
-        @trip.flight_id = params[:flight][:departure]
-      end
       if !params[:departure_city].empty?
         flight = Flight.find_by(departure_city: params[:departure_city])
         if flight
@@ -76,8 +76,11 @@ class TripsController < ApplicationController
         else
           @trip.flight = Flight.create(departure_city: params[:departure_city])
         end
+      elsif params[:flight][:departure]
+        @trip.flight_id = params[:flight][:departure]
       end
         @trip.save
+        flash[:notice] = "Your trip was updated successfully!"
         redirect "/trips/#{@trip.id}"
     end
 
@@ -92,6 +95,7 @@ class TripsController < ApplicationController
           redirect '/trips'
         end
       else
+        flash[:notice] = "Please login to see this page"
         redirect to '/login'
       end
     end

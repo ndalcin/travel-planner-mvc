@@ -9,7 +9,7 @@
   Number of Travelers: <input type="text" name="trip[travelers]" id="trip_travelers" ></input>
   <br></br>
   <br></br>
-  If you will be needing a flight, please select your departure city from the list. If you don't see yours, add it in!
+  Please select your departure city from the list. If you don't see yours, add it in!
   <br></br>
   <%Flight.all.each do |flight|%>
     <input type="radio" name="flight[departure]" id="" value="<%=flight.id%>"><%=flight.departure_city%></input>

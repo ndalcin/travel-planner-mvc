@@ -2,13 +2,19 @@
 <html>
   <head>
     <title>Nicole's Trip Planner Application</title>
+    <style type="text/css" media="screen">
+
+    #content {
+        width: 700px;
+        margin: 1em auto;
+      }
+      </style>
   </head>
   <body>
-
-      <% if flash[:notice] %>
-        <p class="flash"><%= flash[:notice] %></p>
-      <% end %>
-      
+    <% if flash[:notice] %>
+      <p class="flash"><%= flash[:notice] %></p>
+    <% end %>
+    
     <%= yield %>
   </body>
 </html>

@@ -9,6 +9,7 @@ class UsersController < ApplicationController
 
   post "/signup" do
     if params.has_value?("")
+      flash[:notice] = 'Please try entering your information again. You may be missing one of the required values.'
       redirect "/signup"
     end
     @user = User.create(:username => params[:username], email: params[:email], :password => params[:password])
@@ -29,7 +30,7 @@ class UsersController < ApplicationController
       session[:user_id] = @user.id
       redirect "/home"
     else
-      flash[:notice] = 'You must be logged in to do this'
+      flash[:notice] = 'Please re-enter your login information'
       redirect "/login"
     end
   end
